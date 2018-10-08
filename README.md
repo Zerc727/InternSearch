@@ -7,7 +7,7 @@ An application for students to find internship opportunities!
 
 ## Description
 This project allows Sponsors to post internship opportunities with the ability for students to apply to them.
-###Where are we in development?
+### Where are we in development?
 - [ ] Hosted, unusable
 - [ ] Able to login, unusable
 - [ ] Able to post jobs and search jobs, moderately unusable
