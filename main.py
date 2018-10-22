@@ -3,6 +3,8 @@ import getpass #Used to get secure password for
 import signal #Used for Ctrl-C Event Handle
 from flask import Flask, render_template, session, request, redirect, url_for
 app = Flask(__name__)
+
+#Notes:
 #Old debug command in script has been deprecated. Debug now set in run scripts
 
 #########################
@@ -11,12 +13,12 @@ app = Flask(__name__)
 
 #Below is the connection settings for the database. After prompting for the password it trys to connect
 pswd = getpass.getpass('SQL Password: ')
-db = pymysql.connect(host='<SQL IP>', user='root', password=pswd, db='<DATABASE>')
+db = pymysql.connect(host='<SQL IP>', user='root', password=pswd, db='LOTR')
 c = db.cursor()
 
 #Below will run commands on Ctrl-C. Used to close the database
 def sigint_handler(signum, frame):
-	print("Goodbye!")
+	print("Closing Database")
 	db.close()
 	exit()
 
