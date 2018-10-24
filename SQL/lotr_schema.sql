@@ -1,6 +1,6 @@
 drop table if exists sponsors;
 create table sponsors (
-	internship_id integer foreign key,
+	internship_id integer foreign key references internships(internship_id),
 	sponsor_id integer primary key autoincrement,
 	sponsor_name text not null,
 	sponsor_companyname text not null,
@@ -14,7 +14,7 @@ create table sponsors (
 drop table if exists interships;
 create table internships (
 	internship_id integer primary key autoincrement,
-	sponsor_id integer foreign key,
+	sponsor_id integer foreign key references sponsors(sponsor_id),
 	sponsor_internshiptitle text not null,
 	sponsor_dateavail text not null,
 	sponsor_special text not null
@@ -35,17 +35,15 @@ create table students (
 drop table if exists applications;
 create table applications (
 	application_id integer autoincrement primary key,
-	internship_id integer foreign key,
-	student_id integer foreign key,
-	sponsor_companyname text foreign key not null,
-	sponsor_internshiptitle text foreign key not null,
+	internship_id integer foreign key references internships(internship_id),
+	student_id integer foreign key references students(student_id),
 	date_avail integer not null
 );
 
 drop table if exists notifications;
 create table notifications (
-	internship_id integer foreign key,
-	student_id integer foreign key,
+	internship_id integer foreign key references internships(internship_id),
+	student_id integer foreign key references students(student_id),
 	sender text not null,
 	recipient text not null,
 	description text not null,
