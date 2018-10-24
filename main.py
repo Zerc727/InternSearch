@@ -2,8 +2,6 @@ import pymysql #used to connect SQL DB to python and run queries
 import getpass #Used to get secure password for 
 import signal #Used for Ctrl-C Event Handle
 from flask import Flask, render_template, session, request, redirect, url_for
-pswd = getpass.getpass('SQL Password: ')
-db = pymysql.connect(host='35.190.161.194', user='root', password=pswd, db='lotr')
 app = Flask(__name__)
 
 #Notes:
@@ -14,6 +12,8 @@ app = Flask(__name__)
 #########################
 
 #Below is the connection settings for the database. After prompting for the password it trys to connect
+#pswd = getpass.getpass('SQL Password: ')
+db = pymysql.connect(host='35.190.161.194', user='root', password='password', db='lotr')
 c = db.cursor()
 
 #Below will run commands on Ctrl-C. Used to close the database
