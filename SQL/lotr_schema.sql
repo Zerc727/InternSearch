@@ -11,7 +11,7 @@ create table sponsors (
 	student_password varchar(255) not null
 );
 
-drop table if exists interships;
+drop table if exists internships;
 create table internships (
 	internship_id integer primary key auto_increment,
 	sponsor_internshiptitle varchar(255) not null,
