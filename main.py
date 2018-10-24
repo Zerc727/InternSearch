@@ -1,8 +1,34 @@
+import pymysql #used to connect SQL DB to python and run queries
+import getpass #Used to get secure password for 
+import signal #Used for Ctrl-C Event Handle
 from flask import Flask, render_template, session, request, redirect, url_for
 app = Flask(__name__)
+
+#Notes:
 #Old debug command in script has been deprecated. Debug now set in run scripts
 
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+#########################
+####Below is untested####
+#########################
+
+#Below is the connection settings for the database. After prompting for the password it trys to connect
+pswd = getpass.getpass('SQL Password: ')
+db = pymysql.connect(host='35.190.161.194', user='root', password=pswd, db='lotr')
+c = db.cursor()
+
+#Below will run commands on Ctrl-C. Used to close the database
+def sigint_handler(signum, frame):
+	print("Closing Database")
+	db.close()
+	exit()
+
+signal.signal(signal.SIGINT, sigint_handler)
+
+#########################
+#########################
+#########################
+
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/' #Used for the session
 
 #Main route, root of application
 @app.route('/')
