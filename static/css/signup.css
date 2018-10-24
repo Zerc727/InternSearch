@@ -4,7 +4,7 @@
 	padding:0;
 }
 body{
-	background-image: {{ url_for('static', filename='images/images3.jpg') }};
+	background-image: url('../images/images3.jpg');
 	background-size:100% 700px;
 	background-repeat: no-repeat;
 }
