@@ -38,16 +38,23 @@ def index():
 
 @app.route('/splash')
 def splash():
-	if session.get('logged_in') == True:
-		return 'You are logged in'
-	return 'You are not logged in'
+	#if session.get('logged_in') == True:
+	#	return 'You are logged in'
+	#return 'You are not logged in'
+	return redirect(url_for('index'))
+
+@app.route('/signup')
+def signup():
+	return render_template('signup.html')
 
 @app.route('/login')
 def login():
-	session['logged_in'] = True
-	return redirect(url_for('splash'))
+	#session['logged_in'] = True
+	#return redirect(url_for('splash'))
+	return render_template('login.html')
 
 @app.route('/logout')
 def logout():
-	session.pop('logged_in', None)
-	return redirect(url_for('splash'))
+	#session.pop('logged_in', None)
+	#return redirect(url_for('splash'))
+	return redirect(url_for('index'))
