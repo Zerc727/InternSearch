@@ -1,61 +1,66 @@
+SET foreign_key_checks = 0;
 drop table if exists sponsors;
 create table sponsors (
-	internship_id integer foreign key,
-	sponsor_id integer primary key autoincrement,
-	sponsor_name text not null,
-	sponsor_companyname text not null,
-	sponsor_email text not null,
-	sponsor_internshiptitle text not null,
-	sponsor_dateavail text not null,
-	sponsor_special text not null,
-	student_password varchar not null
+	sponsor_id integer primary key auto_increment,
+	sponsor_name varchar(255) not null,
+	sponsor_companyname varchar(255) not null,
+	sponsor_email varchar(255) not null,
+	sponsor_internshiptitle varchar(255) not null,
+	sponsor_dateavail varchar(255) not null,
+	sponsor_special varchar(255) not null,
+	student_password varchar(255) not null
 );
 
 drop table if exists interships;
 create table internships (
-	internship_id integer primary key autoincrement,
-	sponsor_id integer foreign key,
-	sponsor_internshiptitle text not null,
-	sponsor_dateavail text not null,
-	sponsor_special text not null
+	internship_id integer primary key auto_increment,
+	sponsor_internshiptitle varchar(255) not null,
+	sponsor_dateavail varchar(255) not null,
+	sponsor_special varchar(255) not null
 );
+
+ALTER TABLE internships ADD sponsor_id integer;
+ALTER TABLE internships ADD FOREIGN KEY (sponsor_id) references sponsors(sponsor_id);
+ALTER TABLE sponsors ADD internship_id integer;
+ALTER TABLE sponsors ADD FOREIGN KEY (internship_id) references internships(internship_id);
 
 drop table if exists students;
 create table students (
-	student_id integer primary key,
-	student_name text not null,
-	student_email text not null,
-	student_year text not null,
-	student_majorminor text not null,
+	student_id integer primary key auto_increment,
+	student_name varchar(255) not null,
+	student_email varchar(255) not null,
+	student_year varchar(255) not null,
+	student_majorminor varchar(255) not null,
 	student_gpa float not null,
-	student_skillshobbies text not null,
-	student_password varchar not null
+	student_skillshobbies varchar(255) not null,
+	student_password varchar(255) not null
 );
 
 drop table if exists applications;
 create table applications (
-	application_id integer autoincrement primary key,
-	internship_id integer foreign key,
-	student_id integer foreign key,
-	sponsor_companyname text foreign key not null,
-	sponsor_internshiptitle text foreign key not null,
+	application_id integer auto_increment primary key,
 	date_avail integer not null
 );
 
+ALTER TABLE applications ADD internship_id integer;
+ALTER TABLE applications ADD FOREIGN KEY (internship_id) references internships(internship_id);
+ALTER TABLE applications ADD student_id integer;
+ALTER TABLE applications ADD FOREIGN KEY (student_id) references students(student_id);
+
 drop table if exists notifications;
 create table notifications (
-	internship_id integer foreign key,
-	student_id integer foreign key,
-	sender text not null,
-	recipient text not null,
-	description text not null,
-	read_unread text not null
+	notification_id integer primary key auto_increment,
+	sender varchar(255) not null,
+	recipient varchar(255) not null,
+	description varchar(255) not null,
+	read_unread varchar(255) not null
 );
 
-drop table if exists users;
+drop table if exists faculty;
 create table faculty (
-	faculty_id integer primary key autoincrement,
-	faculty_name text not null,
-	faculty_email text not null,
-	faculty_password text not null
+	faculty_id integer primary key auto_increment,
+	faculty_name varchar(255) not null,
+	faculty_email varchar(255) not null,
+	faculty_password varchar(255) not null
 );
+SET foreign_key_checks = 1;
