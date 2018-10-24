@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 #Below is the connection settings for the database. After prompting for the password it trys to connect
 pswd = getpass.getpass('SQL Password: ')
-db = pymysql.connect(host='<SQL IP>', user='root', password=pswd, db='LOTR')
+db = pymysql.connect(host='35.190.161.194', user='root', password=pswd, db='lotr')
 c = db.cursor()
 
 #Below will run commands on Ctrl-C. Used to close the database
