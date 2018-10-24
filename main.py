@@ -17,12 +17,13 @@ db = pymysql.connect(host='35.190.161.194', user='root', password='password', db
 c = db.cursor()
 
 #Below will run commands on Ctrl-C. Used to close the database
-def sigint_handler(signum, frame):
-	print("Closing Database")
-	db.close()
-	exit()
+#This stopped working because of how Flask Runs. We will have to do something similar for production
+#def sigint_handler(signum, frame):
+#	print("Closing Database")
+#	db.close()
+#	exit()
 
-signal.signal(signal.SIGINT, sigint_handler)
+#signal.signal(signal.SIGINT, sigint_handler)
 
 #########################
 #########################
