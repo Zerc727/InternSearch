@@ -4,6 +4,7 @@ An application for students to find internship opportunities!
 ## Requires
 - Python3
   - Flask
+  - Oh
 
 ## Description
 This project allows Sponsors to post internship opportunities with the ability for students to apply to them.
